@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login here..</title>
+</head>
+<body>
+    <div>
+        <form action="/login/" method="POST">
+            {% csrf_token %}
+            <h2 class="sr-only">Login Form</h2>
+            <div class="form-group">
+                <input type="text" class="form-control" id="loginusername" name="loginusername" placeholder="Username*"
+                    required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="loginpass" name="loginpass" placeholder="Password*"
+                    required>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" type="submit">Log In</button>
+            </div>
+            {% comment %} <div class = "forgot">Forgot your emailid or password <a href="{% url 'forgot-pass' %}">Click</a> </div> {% endcomment %}
+            {% comment %} <div class = "forgot">New User? <a href="{% url 'signup' %}">Sign Up</a> </div> {% endcomment %}
+            
+        </form>
+    </div>
+</body>
+</html>

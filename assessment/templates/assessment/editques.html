@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Question</title>
+
+        <script type="text/javascript">
+            function selects(){  
+                console.log('hello');
+                var ele=document.getElementsByName('input-edit');   
+                for(var i=0; i<ele.length; i++){  
+                    if(ele[i].type=='checkbox')  
+                        ele[i].checked=true;  
+                }  
+            }
+
+            function deSelect(){  
+                var ele=document.getElementsByName('input-edit');  
+                for(var i=0; i<ele.length; i++){  
+                    if(ele[i].type=='checkbox')  
+                        ele[i].checked=false;  
+                            
+                }  
+            }  
+
+        </script>
+
+
+</head>
+<body>
+    <h1>Edit Questions: </h1>
+    <input type="button" class = "sall" onClick='selects()' value="Select All"/>  
+    <input type="button" onclick='deSelect()' value="Deselect All"/>
+    <form action="/editques/" method="post">
+        {% csrf_token %}
+        {% for ques in questions %}
+            <div class="question">
+                <input type="checkbox" id = "checkbox" name = "input-edit" value = "{{ques.id}}">
+                <div class="subject">
+                    <label for="sub">Subject</label>
+                    <input type="text" id = "subject" name = "subject{{ques.id}}" value = "{{ques.subject}}">
+                </div>
+                <div class="question">
+                    <label for="ques">Question</label>
+                    <input type="text" id = "question" name = "question{{ques.id}}" value = "{{ques.question}}">
+                </div>
+                <div class="answer">
+                    <label for="ques">Answer</label>
+                    <input type="text" id = "answer" name = "answer{{ques.id}}" value = "{{ques.answer}}">
+                </div>
+                <div class="option1">
+                    <label for="option1">Option1</label>
+                    <input type="text" id = "option1" name = "option1{{ques.id}}" value = "{{ques.option_one}}">
+                </div>
+                <div class="option2">
+                    <label for="option2">Option2</label>
+                    <input type="text" id = "option2" name = "option2{{ques.id}}" value = "{{ques.option_two}}">
+                </div>
+                <div class="answer">
+                    <label for="option3">Option3</label>
+                    <input type="text" id = "option3" name = "option3{{ques.id}}" value = "{{ques.option_three}}">
+                </div>
+                <div class="option4">
+                    <label for="option4">Option4</label>
+                    <input type="text" id = "option4" name = "option4{{ques.id}}" value = "{{ques.option_four}}">
+                </div>
+            </div>
+        {% endfor %}
+        <input type="submit" name = "edit" value = "Edit Question">
+        <input type="submit" name = "delete" value = "Delete Question">
+    </form>
+</body>
+</html>

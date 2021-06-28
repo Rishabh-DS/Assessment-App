@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\ecomweb1"
+		},
+		{
+			"path": "..\\..\\auth_system"
+		},
+		{
+			"path": "..\\..\\drf"
+		},
+		{
+			"path": "..\\..\\quiz"
+		},
+		{
+			"path": "..\\..\\question"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "..\\..\\Simple_Chat_App_using_Django_REST_Framework"
+		},
+		{
+			"path": "..\\..\\textutils\\TextUtils"
+		}
+	],
+	"settings": {}
+}

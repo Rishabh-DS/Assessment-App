@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take Quiz</title>
+
+    <script type="text/javascript">
+        window.onload = function begin(){
+        document.getElementById('timer').innerHTML =
+        01 + ":" + 00;
+        startTimer();
+        }
+
+        function startTimer() {
+        var presentTime = document.getElementById('timer').innerHTML;
+        var timeArray = presentTime.split(/[:]+/);
+        var m = timeArray[0];
+        var s = checkSecond((timeArray[1] - 1));
+        if(s==59){m=m-1}
+        if(m<0){
+            document.getElementById('quiz').submit();
+        }
+        document.getElementById('timer').innerHTML =
+            m + ":" + s;
+        setTimeout(startTimer, 1000);
+        }
+
+        function checkSecond(sec) {
+        if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
+        if (sec < 0) {sec = "59"};
+        return sec;
+        }
+    </script>
+
+</head>
+<body>
+    <div class='float-right sticky-top'>
+        <div class="row justify-content-left">
+            <div class="col-mx-auto">
+                <div class="alert alert-success" role="alert"><center>Time left : <span id="timer"></span></center></div>
+            </div>
+        </div>
+    </div>
+    <h1>Take Quiz</h1>
+    <form action="/quizdone/" method="post" id = 'quiz'>
+        {% csrf_token %}
+        <input type="hidden" name="quiz_code" value = "{{quiz_code}}">
+        {% for ques in questions %}
+        <div class="questions">
+            <div class="question">
+                {{forloop.counter}}:- {{ques.question}}    
+            </div>
+            <div class="options">
+                <p>options:</p>
+                <input type="radio" id="1" name="option{{ques.id}}" value="1">
+                <label for="1">{{ques.option_one}}</label><br>
+                <input type="radio" id="2" name="option{{ques.id}}" value="2">
+                <label for="2">{{ques.option_two}}</label><br>
+                <input type="radio" id="3" name="option{{ques.id}}" value="3">
+                <label for="3">{{ques.option_three}}</label><br>
+                <input type="radio" id="4" name="option{{ques.id}}" value="4">
+                <label for="4">{{ques.option_four}}</label><br>
+            </div>
+        </div><br><br>
+        {% endfor %}
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

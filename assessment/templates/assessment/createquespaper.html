@@ -1,0 +1,99 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Question Paper</title>
+</head>
+<body>
+    <h1>Create Question Paper</h1>
+    {% for ques in questions %}
+      <h1>{{ques}}</h1>
+    {% endfor %}
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Question</title>
+
+    <script type="text/javascript">
+
+    {% comment %} function s(source) {
+        checkboxes = document.getElementsByName('input-create');
+        var n=checkboxes.length;
+        for(var i=0;i<n;i++) {
+            checkboxes[i].checked = true;
+        }
+        console.log(source.checked)
+    } {% endcomment %}
+
+    function selects(){  
+        console.log('hello');
+        var ele=document.getElementsByName('input-create');   
+        for(var i=0; i<ele.length; i++){  
+            if(ele[i].type=='checkbox')  
+                ele[i].checked=true;  
+        }  
+    }
+
+    function deSelect(){  
+        var ele=document.getElementsByName('input-create');  
+        for(var i=0; i<ele.length; i++){  
+            if(ele[i].type=='checkbox')  
+                ele[i].checked=false;  
+                      
+        }  
+    }  
+
+</script>
+
+
+</head>
+<body>
+    <h1>Edit Questions: </h1>
+    <input type="button" class = "sall" onClick='selects()' value="Select All"/>  
+    <input type="button" onclick='deSelect()' value="Deselect All"/>
+    <form action="/createques/" method="post">
+        {% csrf_token %}
+        <input type="text" id = "marks" name = "markspq" placeholder = "Marks Per Question" required>
+        {% for ques in questions %}
+            <div class="question">
+                <input type="checkbox" id = "checkbox" name = "input-create" value = "{{ques.id}}">
+                <div class="subject">
+                    <input type="hidden" name="subject" value = "{{ques.subject}}">
+                    <p>{{ques.subject}}</p>
+                </div>
+                <div class="question">
+                    <p>Question: {{ques.question}}</p>
+                </div>
+                <div class="answer">
+                    <p>Answer: {{ques.answer}}</p>
+                </div>
+                <div class="option1">
+                    <p>Option1: {{ques.option_one}}</p>
+                </div>
+                <div class="option2">
+                    <p>Option2: {{ques.option_two}}</p>
+                </div>
+                <div class="answer">
+                    <p>Option3: {{ques.option_three}}</p>
+                </div>
+                <div class="option4">
+                    <p>Option4: {{ques.option_four}}</p>
+                </div>
+            </div>
+        {% endfor %}
+        <input type="submit" name = "create" value = "Create Question Paper">
+    </form>
+
+
+
+</body>
+</html>

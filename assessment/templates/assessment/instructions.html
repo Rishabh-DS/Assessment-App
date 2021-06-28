@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Quiz code and read instructions carefully</title>
+</head>
+<body>
+    <h1>Enter Quiz code</h1><br><br>
+    <div class="entercode">
+        <form action="/takequiz/" method="post">
+            {% csrf_token %}
+            <input type="text" class="form-control" id="quizcode" name="quizcode" placeholder="Enter Quiz Code" required>
+            <button class="btn btn-primary btn-block" type="submit">Next</button>
+        </form>
+    </div>
+</body>
+</html>
